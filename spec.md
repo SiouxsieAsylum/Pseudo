@@ -1,4 +1,4 @@
-Top level: Two parts
+Top level: Three parts
 
 
 1. Comment List: One part
@@ -19,6 +19,23 @@ Top level: Two parts
 	b. Full Code Editor View
 		i. Codemirror value (range can be accessed by line numbers?)
 		ii. Comments will just be set as first few lines
+		iii. Will update the mapper of line items on every content change 
+
+So what are we looking at here statewise? 
+
+{
+	View: ["CommentList, CodeBlock, TextEditor,"]
+	CommentArray: ["", "", ""],
+	CommentLineMapper: {
+		comment: {
+			commentIndex: int,
+			codeRange: [array of ints]
+		},
+
+	},
+	Code: {Code[CodeMirror.getLine(int)] = i}  
+
+}
 
 
 Reference of functionality:
