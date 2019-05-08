@@ -9,7 +9,7 @@ import { HashLink as Link } from 'react-router-hash-link'
 
 
 import Nav from './components/Nav'
-import CodeEditorContainer from './components/CodeEditorContainer'
+import TextEditingContainer from './components/TextEditingContainer'
 import PCInputContainer from './components/PCInputContainer'
 import Title from './components/Title'
 
@@ -24,8 +24,8 @@ function App() {
   return (
     <div className="App">
     	<Title />
-    	<CodeEditorContainer />
-      <PCInputContainer/>
+    	<TextEditingContainer />
+      	<PCInputContainer />
     </div>
   );
 }
