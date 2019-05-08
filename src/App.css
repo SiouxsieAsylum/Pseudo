@@ -23,6 +23,11 @@
   color: #61dafb;
 }
 
+.code-mirror-sizer {
+  width: 50vh;
+  text-align: left;
+}
+
 .ReactCodeMirror {
   border: 1px solid #ccc;
 }
