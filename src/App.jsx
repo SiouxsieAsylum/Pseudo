@@ -31,6 +31,13 @@ import 'codemirror/mode/javascript/javascript.js'
 
 function App() {
 
+	constructor(){
+		super();
+		this.state = {
+			view: "comment"
+		}
+	}
+
 	let options = {
 		lineNumbers: true,
 		showCursorWhenSelecting: true,
@@ -38,7 +45,6 @@ function App() {
 		mode: 'javascript',
 		//eventually a state
 		theme: 'midnight'
-
 	};
 
   return (

@@ -8,7 +8,7 @@ class TextEditingContainer extends Component {
 		super(props);
 		//initializes state
 		this.state = {
-			view: 'block',
+			editorVersion: 'block',
 			comments: ["hello"]
 		}
 		//bind event handlers to this instance

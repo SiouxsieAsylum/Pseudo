@@ -44,3 +44,9 @@ Handler for content change can handle following:
 	Determine if line changed was a comment line. If so, update the index of the comment in state
 	If line edited is actual code, add to the comment index to code line number lineup indexes[commentIndex] = [codeIdx, codeIdx, codeIdx];
 	That way we can cobble together the broken up version by mapping all the line numbers together and setting the codemirror values.
+
+
+Things I'll need to research
+https://github.com/JedWatson/react-codemirror
+"The easiest way to use codemirror is to install it from NPM and **include it in your own React build process (using Browserify, Webpack, etc)**". << dunno what that last part means
+
