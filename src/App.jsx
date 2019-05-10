@@ -19,7 +19,7 @@ import Title from './components/Title'
 import './reset.css';
 import './App.css';
 import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/midnight.css'
+import 'codemirror/theme/midnight.css';
 
 
 //////////////////// IMPORTS - JS //////////////////////////////
@@ -31,31 +31,11 @@ import 'codemirror/mode/javascript/javascript.js'
 
 function App() {
 
-	constructor(){
-		super();
-		this.state = {
-			view: "comment"
-		}
-	}
-
-	let options = {
-		lineNumbers: true,
-		showCursorWhenSelecting: true,
-		//eventually a state
-		mode: 'javascript',
-		//eventually a state
-		theme: 'midnight'
-	};
-
   return (
     <div className="App">
     	<Title />
     	<TextEditingContainer />
       	<PCInputContainer />
-      	 {/* height is 300 default, width is up to container */}
-      	<div className="code-mirror-sizer">
-      		<CodeMirror value="console.log('Hello, World!')" options={options}/>
-      	</div>
     </div>
   );
 }

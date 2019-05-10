@@ -16,7 +16,7 @@ class TextEditingContainer extends Component {
 
 	render() {
 
-		let viewState = this.state.view;
+		let viewState = this.state.editorVersion;
 		let view;
 
 		if (viewState === 'block') {
