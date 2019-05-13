@@ -11,13 +11,23 @@ const COMMENT_FORMATS = {
 class CodeEditorBlock extends Component {
 	constructor(props){
 		super(props);
-		//initializes state
 		this.state = {
 			mode: 'javascript',
 			theme: 'midnight'
 		}
+
+		this.formatComment = this.formatComment.bind(this);
 	};
 
+	formatComment(comment){
+		let startComment = COMMENT_FORMATS[this.state.mode].start;
+		let endComment = COMMENT_FORMATS[this.state.mode].end ? COMMENT_FORMATS[this.state.mode].end : null;
+
+		comment = startComment + " " + comment;
+		if (endComment) comment = comment + " " + endComment;
+
+		return comment;
+	}
 
 	render() {
 
@@ -28,19 +38,10 @@ class CodeEditorBlock extends Component {
 			theme: this.state.theme
 		};
 
-		const formatComment = (comment) => {
-			let startComment = COMMENT_FORMATS[this.state.mode].start;
-			let endComment = COMMENT_FORMATS[this.state.mode].end ? COMMENT_FORMATS[this.state.mode].end : null;
-
-			comment = startComment + " " + comment;
-			if (endComment) comment = comment + " " + endComment;
-
-			return comment;
-		}
 
 		return (
 	      		<div className="code-mirror-sizer">
-      				<CodeMirror defaultValue={this.props.pseudo ? formatComment(this.props.pseudo) : null} options={options}/>
+      				<CodeMirror defaultValue={this.props.pseudo ? this.formatComment(this.props.pseudo) : null} options={options}/>
 	      		</div>
 		)
 	}

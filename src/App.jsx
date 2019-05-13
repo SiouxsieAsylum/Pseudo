@@ -36,6 +36,7 @@ class App extends Component {
 			pseudos: []
 		}
 		this.addPseudo = this.addPseudo.bind(this);
+		this.removePseudo = this.removePseudo.bind(this);
 	};
 
 	addPseudo(event){
@@ -49,6 +50,15 @@ class App extends Component {
 			}
     }
 
+    removePseudo(comment){
+		this.setState(state => {
+			let pseudos = state.pseudos.filter((saved) => {
+				return saved !== comment;
+			})
+			return { pseudos }
+		})
+    }
+
 	render(){
 
 		return (
@@ -59,7 +69,8 @@ class App extends Component {
 	    	  	/>
 	      	  <PCInputContainer
 	      	  	  pseudos={this.state.pseudos}
-	    		  addPseudo={this.addPseudo} 
+	    		  addPseudo={this.addPseudo}
+	    		  removePseudo={this.removePseudo} 
 	      	  	/>
 	      </div>  	
       	);

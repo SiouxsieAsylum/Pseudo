@@ -18,6 +18,7 @@ class PCInputContainer extends Component {
 						key={this.props.pseudos.indexOf(comment)}
 						pseudo={comment}
 						addPseudo={this.props.addPseudo}
+						removePseudo={this.props.removePseudo}
 						/>
 				})}
 				<PCInput 
