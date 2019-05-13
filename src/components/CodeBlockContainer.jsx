@@ -13,7 +13,14 @@ class CodeBlockContainer extends Component {
 	render() {
 		return (
 			<div>
-				<CodeEditorBlock />
+				{this.props.pseudos.map(comment => {
+					return <CodeEditorBlock 
+						key={this.props.pseudos.indexOf(comment)}
+						pseudo={comment}
+						/>
+				})}
+				<CodeEditorBlock 
+					/>
       		</div>
 		)
 	}

@@ -54,7 +54,9 @@ class App extends Component {
 		return (
 	      <div className="App">
 	    	  <Title />
-	    	  <TextEditingContainer/>
+	    	  <TextEditingContainer
+	    	  	  pseudos={this.state.pseudos}
+	    	  	/>
 	      	  <PCInputContainer
 	      	  	  pseudos={this.state.pseudos}
 	    		  addPseudo={this.addPseudo} 

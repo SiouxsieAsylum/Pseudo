@@ -24,7 +24,7 @@ class CodeEditor extends Component {
 			<div>
       	 	{/* height is 300 default, width is up to container */}
       		<div className="code-mirror-sizer">
-      			<CodeMirror value="console.log('Hello, World!')" options={options}/>
+      			<CodeMirror defaultValue={"//" + this.props.pseudo} options={options}/>
       		</div>
       	</div>
 		)

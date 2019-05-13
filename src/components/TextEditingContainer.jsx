@@ -9,7 +9,6 @@ class TextEditingContainer extends Component {
 		//initializes state
 		this.state = {
 			editorVersion: 'block',
-			comments: ["hello"]
 		}
 		//bind event handlers to this instance
 	}
@@ -21,9 +20,12 @@ class TextEditingContainer extends Component {
 
 		if (viewState === 'block') {
 			view = <CodeBlockContainer 
-					comments={this.state.comments} />
+					pseudos={this.props.pseudos} 
+					/>
 		}else {
-			view = <CodeEditorContainer />
+			view = <CodeEditorContainer 
+					pseudos={this.props.pseudos} 
+					/>
 		}
 
 		return (

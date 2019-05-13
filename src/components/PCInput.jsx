@@ -13,7 +13,6 @@ class PCInput extends Component {
 	}
 
 	render() {
-		console.log(this.props)
 		return (
 			<div>
 				<input defaultValue={this.props.pseudo} onKeyPress={this.props.addPseudo} /> 
