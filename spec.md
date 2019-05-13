@@ -37,6 +37,33 @@ So what are we looking at here statewise?
 
 }
 
+landing page
+clickthru()
+
+[input]
+add() to state.pseudos[]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Reference of functionality:
 [Get current Line Number Every Time Content Changes](https://stackoverflow.com/questions/53331776/code-mirror-get-current-line-number-every-time-content-changes) 

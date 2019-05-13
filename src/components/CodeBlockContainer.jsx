@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import  CodeMirror from 'react-codemirror';
-
+import CodeEditorBlock from './CodeEditorBlock';
 
 class CodeBlockContainer extends Component {
 	constructor(props){
@@ -12,22 +11,10 @@ class CodeBlockContainer extends Component {
 	};
 
 	render() {
-
-		let options = {
-			lineNumbers: true,
-			showCursorWhenSelecting: true,
-			//eventually a state
-			mode: 'javascript',
-			//eventually a state
-			theme: 'midnight'
-		};
 		return (
 			<div>
-      	 	{/* height is 300 default, width is up to container */}
-      		<div className="code-mirror-sizer">
-      			<CodeMirror value="console.log('Hello, World!')" options={options}/>
+				<CodeEditorBlock />
       		</div>
-      	</div>
 		)
 	}
 }

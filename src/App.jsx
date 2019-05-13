@@ -29,15 +29,39 @@ import 'codemirror/mode/javascript/javascript.js'
 
 /////////////////// COMPONENT - APP /////////////////////////
 
-function App() {
+class App extends Component {
+	constructor(){
+		super();
+		this.state = {
+			pseudos: []
+		}
+		this.addPseudo = this.addPseudo.bind(this);
+	};
 
-  return (
-    <div className="App">
-    	<Title />
-    	<TextEditingContainer />
-      	<PCInputContainer />
-    </div>
-  );
-}
+	addPseudo(event){
+			if (event.key === 'Enter'){
+				let pseudo = event.target.value;
+				this.setState(state => { 
+					let pseudos = state.pseudos.concat(pseudo) 
+					return { pseudos };
+				});
+				event.target.value = ""
+			}
+    }
+
+	render(){
+
+		return (
+	      <div className="App">
+	    	  <Title />
+	    	  <TextEditingContainer/>
+	      	  <PCInputContainer
+	      	  	  pseudos={this.state.pseudos}
+	    		  addPseudo={this.addPseudo} 
+	      	  	/>
+	      </div>  	
+      	);
+  	}
+  }
 
 export default App;

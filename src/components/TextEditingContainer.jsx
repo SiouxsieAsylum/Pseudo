@@ -21,7 +21,7 @@ class TextEditingContainer extends Component {
 
 		if (viewState === 'block') {
 			view = <CodeBlockContainer 
-					comments="this.state.comments" />
+					comments={this.state.comments} />
 		}else {
 			view = <CodeEditorContainer />
 		}
