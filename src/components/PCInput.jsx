@@ -14,7 +14,7 @@ class PCInput extends Component {
 		return (
 			<div>
 				<FontAwesomeIcon icon={faMinusCircle} onClick={() => this.props.removePseudo(this.props.pseudo)} />
-				<input defaultValue={this.props.pseudo} onChange={this.updateState} onKeyPress={this.props.addPseudo} /> 
+				<input defaultValue={this.props.pseudo} onKeyPress={this.props.addPseudo} /> 
 			</div>
 		)
 	}

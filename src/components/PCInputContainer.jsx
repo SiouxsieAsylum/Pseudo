@@ -24,6 +24,7 @@ class PCInputContainer extends Component {
 				<PCInput 
 					addPseudo={this.props.addPseudo}
 					/>
+				<button onClick={this.props.switchToTextEditorView}>To TE View</button>
 			</div>
 		)
 	}

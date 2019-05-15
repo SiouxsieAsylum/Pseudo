@@ -33,11 +33,19 @@ class App extends Component {
 	constructor(){
 		super();
 		this.state = {
+			view: "Title",
 			pseudos: []
 		}
 		this.addPseudo = this.addPseudo.bind(this);
 		this.removePseudo = this.removePseudo.bind(this);
+		this.switchToPCView = this.switchToPCView.bind(this);
+		this.switchToTextEditorView = this.switchToTextEditorView.bind(this);
 	};
+
+
+
+
+	////////////////////////////// CRUD ///////////////////////////////////
 
 	addPseudo(event){
 			if (event.key === 'Enter'){
@@ -59,20 +67,56 @@ class App extends Component {
 		})
     }
 
-	render(){
+	///////////////////////// VIEW FUNCTIONS //////////////////////////////
 
+	switchToPCView(){
+    	this.setState({
+    		view: 'PCInput'
+    	})
+    }
+
+    switchToTextEditorView(){
+    	// in future will check if pseudo has been saved before 
+    	// will allow you to choose view
+    	// for now, takes you to code block
+    	this.setState({
+    		view: 'TextEditor'
+    	})
+    }
+
+    /////////////////////// CONDITIONAL RENDER ////////////////////////////
+    render(){
+
+    	let stateView = this.state.view;
+    	let currentView;
+
+    	//switch statements do not work here.
+		if (stateView === "Title") {
+				currentView = <Title 
+							switchToPCView={this.switchToPCView}
+							/>
+		} else if (stateView === 'PCInput') {
+				currentView = <PCInputContainer
+			      	  	    pseudos={this.state.pseudos}
+			    		    addPseudo={this.addPseudo}
+			    		    removePseudo={this.removePseudo} 
+			    		    switchToTextEditorView={this.switchToTextEditorView}
+			      	  		/>
+		} else if (stateView === 'TextEditor') {
+
+				currentView = <TextEditingContainer
+			    	  	    pseudos={this.state.pseudos}
+			    	  	    switchToPCView={this.switchToPCView}
+			    	  		/>
+		}
+
+
+
+	
 		return (
-	      <div className="App">
-	    	  <Title />
-	    	  <TextEditingContainer
-	    	  	  pseudos={this.state.pseudos}
-	    	  	/>
-	      	  <PCInputContainer
-	      	  	  pseudos={this.state.pseudos}
-	    		  addPseudo={this.addPseudo}
-	    		  removePseudo={this.removePseudo} 
-	      	  	/>
-	      </div>  	
+			<div className="App">
+				{currentView}
+			</div>  	
       	);
   	}
   }
