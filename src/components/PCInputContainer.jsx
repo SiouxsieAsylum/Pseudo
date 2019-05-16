@@ -26,7 +26,7 @@ class PCInputContainer extends Component {
 					removePseudo={this.props.removePseudo}
 
 					/>
-				<button onClick={this.props.switchToTextEditorView}>To TE View</button>
+				<button className="view-switch-button" onClick={this.props.switchToTextEditorView}>To TE View</button>
 			</div>
 		)
 	}

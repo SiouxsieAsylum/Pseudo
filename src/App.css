@@ -42,6 +42,8 @@ html{
   color: white;
   text-shadow: 1px 1px 2px rgb(99, 178, 136);
   margin-top: 100px;
+  box-shadow: 10px 10px 5px 5px rgb(0, 26, 94);
+
 }
 
 /*//////////////////////// TITLE ////////////////////////*/
@@ -61,7 +63,22 @@ html{
 
 .pc-input-container {
    align-self: center;
-   
+   width: 60%;
+   color: rgb(161, 244, 200);
+   font-size: 40px;
+}
+
+.single-input-container input {
+  width: 85%;
+  font-size: 30px;
+  border-radius: 15px;
+  box-shadow: 10px 10px 5px 5px rgb(0, 26, 94);
+  padding: 10px;
+  margin-left: 5px;
+}
+
+.single-input-container {
+
 }
 
 /*//////////////////////// SHARED CODE STYLES ////////////////////////*/
@@ -70,6 +87,8 @@ html{
   width: 60vw;
   text-align: left;
   align-self: center;
+  box-shadow: 10px 10px 5px 5px rgb(0, 26, 94);
+
 }
 
 .ReactCodeMirror {

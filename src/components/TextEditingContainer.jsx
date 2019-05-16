@@ -32,7 +32,7 @@ class TextEditingContainer extends Component {
 
 			<div>
 				{view}
-				<button onClick={this.props.switchToPCView}>To PC View</button>
+				<button className="view-switch-button" onClick={this.props.switchToPCView}>To PC View</button>
 			</div>
 		)
 	}
