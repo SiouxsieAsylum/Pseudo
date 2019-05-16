@@ -12,7 +12,8 @@ class CodeBlockContainer extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="centered-container content-container">
+
 				{this.props.pseudos.map(comment => {
 					return <CodeEditorBlock 
 						key={this.props.pseudos.indexOf(comment)}

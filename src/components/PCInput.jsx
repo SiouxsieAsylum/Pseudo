@@ -9,10 +9,9 @@ class PCInput extends Component {
 		super(props);
 	}
 
-
 	render() {
 		return (
-			<div>
+			<div className="single-input-container">
 				<FontAwesomeIcon icon={faMinusCircle} onClick={() => this.props.removePseudo(this.props.pseudo)} />
 				<input defaultValue={this.props.pseudo} onKeyPress={this.props.addPseudo} /> 
 			</div>

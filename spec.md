@@ -37,15 +37,35 @@ So what are we looking at here statewise?
 
 }
 
-landing page
-clickthru()
+--------------------------------------
 
-[input]
-add() to state.pseudos[]
+Input Specs
+	- Verification
+		- Grammar
+		- No Empty Comments
+	- UI
+		- Enter and leave animation
+		- Delete button to delete
+		- Grab and move
+		- Stay at the scrollbottom when expanding past container
 
+Codemirror Specs
+	- Linting
+		- A package for each mode?
+	- Autoformatting
+	- Catch errors?
+	- REPL.it?
+	- Codemirror mode selection
+	- Smart Blocks
+		- How to ask if blocks should be wrapped in other blocks
+		- Were you trying to do X?
 
-
-
+Saving specs
+	- Users can download the file into their projects
+	- Users can save files to the DB
+	- Users can see a list of their pseudos 
+		- When they nav to (like repl.it)
+		- In their profile
 
 
 

@@ -12,7 +12,7 @@ class PCInputContainer extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="pc-input-container centered-container content-container">
 				{this.props.pseudos.map(comment => {
 					return <PCInput 
 						key={this.props.pseudos.indexOf(comment)}
@@ -23,6 +23,8 @@ class PCInputContainer extends Component {
 				})}
 				<PCInput 
 					addPseudo={this.props.addPseudo}
+					removePseudo={this.props.removePseudo}
+
 					/>
 				<button onClick={this.props.switchToTextEditorView}>To TE View</button>
 			</div>

@@ -1,36 +1,84 @@
+/*//////////////////////// CONTAINERS ////////////////////////*/
+
+html{
+    background-color: rgb(10, 49, 155);
+
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: rgb(10, 49, 155);
   color: white;
+  font-weight: bolder;
+  font-family: 'Ubuntu', sans-serif;
+
 }
 
-.App-link {
-  color: #61dafb;
+.centered-container{
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
 }
+
+.content-container{
+  height: 80vh;
+}
+
+/*//////////////////////// MISC ELEMENT STYLE /////////////////////*/
+
+.view-switch-button {
+  width: 60%;
+  height: 75px;
+  background-color: rgb(161, 244, 200);
+  border-bottom: 5px solid rgb(99, 178, 136);
+  border-radius: 10px;
+  align-self: center;
+  font-size: 40px;
+  color: white;
+  text-shadow: 1px 1px 2px rgb(99, 178, 136);
+  margin-top: 100px;
+}
+
+/*//////////////////////// TITLE ////////////////////////*/
+
+.title{
+  height: 60vh;
+}
+
+.title-heading {
+  width: 100%;
+  font-size: 60px;
+  text-align: center;
+  margin-top: 100px;
+}
+
+/*//////////////////////// PC INPUT ////////////////////////*/
+
+.pc-input-container {
+   align-self: center;
+   
+}
+
+/*//////////////////////// SHARED CODE STYLES ////////////////////////*/
 
 .code-mirror-sizer {
-  width: 50vh;
+  width: 60vw;
   text-align: left;
+  align-self: center;
 }
 
 .ReactCodeMirror {
   border: 1px solid #ccc;
 }
+
+/*//////////////////////// CODE BLOCK ////////////////////////*/
+/*//////////////////////// TEXT EDITOR ////////////////////////*/
+/*//////////////////////// KEYFRAMES //////////////////////////*/
 
 @keyframes App-logo-spin {
   from {

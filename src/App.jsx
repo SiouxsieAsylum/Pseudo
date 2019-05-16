@@ -54,6 +54,8 @@ class App extends Component {
 					let pseudos = state.pseudos.concat(pseudo) 
 					return { pseudos };
 				});
+				//lost one lost whn switching views
+				
 				event.target.value = ""
 			}
     }
@@ -90,7 +92,7 @@ class App extends Component {
     	let stateView = this.state.view;
     	let currentView;
 
-    	//switch statements do not work here.
+    	//switch statements do not work
 		if (stateView === "Title") {
 				currentView = <Title 
 							switchToPCView={this.switchToPCView}
