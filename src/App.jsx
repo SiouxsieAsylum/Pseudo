@@ -53,9 +53,7 @@ class App extends Component {
 				this.setState(state => { 
 					let pseudos = state.pseudos.concat(pseudo) 
 					return { pseudos };
-				});
-				//lost one lost whn switching views
-				
+				});				
 				event.target.value = ""
 			}
     }

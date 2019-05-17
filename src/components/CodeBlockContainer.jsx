@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
+import Scroll from 'react-scroll';
 import CodeEditorBlock from './CodeEditorBlock';
+
+const Link = Scroll.Link;
+const DirectLink = Scroll.DirectLink;
+const Element = Scroll.Element;
+const Events = Scroll.Events;
+const scroll = Scroll.animateScroll;
+const scrollSpy = Scroll.scrollSpy;
 
 class CodeBlockContainer extends Component {
 	constructor(props){
@@ -8,20 +16,29 @@ class CodeBlockContainer extends Component {
 		//initializes state
 		this.state = {}
 		//bind event handlers to this instance
-	};
+		this.scrollToBottom = this.scrollToBottom.bind(this);
+	}
+
+	scrollToBottom() {
+		scroll.scrollToBottom({
+			containerId: 'pc-inputs'
+		})
+	}
+
+	componentWillUpdate(){
+		this.scrollToBottom();
+	}
 
 	render() {
 		return (
-			<div className="centered-container content-container">
+			<div>
 
-				{this.props.pseudos.map(comment => {
+				{this.props.pseudos.map((comment, i) => {
 					return <CodeEditorBlock 
-						key={this.props.pseudos.indexOf(comment)}
+						key={i}
 						pseudo={comment}
 						/>
 				})}
-				<CodeEditorBlock 
-					/>
       		</div>
 		)
 	}

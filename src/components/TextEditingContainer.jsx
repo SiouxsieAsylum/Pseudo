@@ -29,11 +29,14 @@ class TextEditingContainer extends Component {
 		}
 
 		return (
-
-			<div>
-				{view}
+			<div className="outer-code-container">				
+				<div className="centered-container content-container">
+					{view}
+				</div>
 				<button className="view-switch-button" onClick={this.props.switchToPCView}>To PC View</button>
+
 			</div>
+
 		)
 	}
 }

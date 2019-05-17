@@ -1,30 +1,50 @@
 import React, { Component } from 'react';
+import Scroll from 'react-scroll';
 import PCInput from './PCInput';
+
+
+const Link = Scroll.Link;
+const DirectLink = Scroll.DirectLink;
+const Element = Scroll.Element;
+const Events = Scroll.Events;
+const scroll = Scroll.animateScroll;
+const scrollSpy = Scroll.scrollSpy;
+
 
 class PCInputContainer extends Component {
 	constructor(props){
-		//ensures props are defined at componentDidMount
 		super(props);
-		//initializes state
 		this.state = {}
-		//bind event handlers to this instance
+
+		this.scrollToBottom = this.scrollToBottom.bind(this);
+	}
+
+	scrollToBottom() {
+		scroll.scrollToBottom({
+			containerId: 'pc-inputs'
+		})
+	}
+
+	componentWillUpdate(){
+		this.scrollToBottom();
 	}
 
 	render() {
 		return (
-			<div className="pc-input-container centered-container content-container">
-				{this.props.pseudos.map(comment => {
-					return <PCInput 
-						key={this.props.pseudos.indexOf(comment)}
-						pseudo={comment}
-						addPseudo={this.props.addPseudo}
-						removePseudo={this.props.removePseudo}
-						/>
-				})}
+			<div className="pc-input-container centered-container content-container" id="pc-inputs">
+					{this.props.pseudos.map((comment, i) => {
+						return <PCInput 
+							key={i}
+							pseudo={comment}
+							addPseudo={this.props.addPseudo}
+							removePseudo={this.props.removePseudo}
+							/>
+					})}
+
 				<PCInput 
+					id="newInput"
 					addPseudo={this.props.addPseudo}
 					removePseudo={this.props.removePseudo}
-
 					/>
 				<button className="view-switch-button" onClick={this.props.switchToTextEditorView}>To TE View</button>
 			</div>
