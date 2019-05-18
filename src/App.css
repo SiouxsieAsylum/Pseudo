@@ -87,11 +87,19 @@ html{
 .outer-code-container{
   display: flex;
   flex-direction: column;
+  align-self: center;
 }
 
-.code-mirror-sizer {
-  width: 60vw;
-  text-align: left;
+.inner-code-container{
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.code-mirror {
+  align-self: center;
+  width: 90%;
   box-shadow: 10px 10px 5px 5px rgb(0, 26, 94);
   margin-bottom: 20px;
 }
@@ -100,8 +108,12 @@ div.CodeMirror {
   height: inherit;
 }
 
-.ReactCodeMirror{
+.block-size > .ReactCodeMirror{
   height: 200px;
+}
+
+.editor-size > .ReactCodeMirror{
+  height: 70vh;
 }
 
 

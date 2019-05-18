@@ -37,6 +37,7 @@ class CodeBlockContainer extends Component {
 					return <CodeEditorBlock 
 						key={i}
 						pseudo={comment}
+						formatComment={this.props.formatComment}
 						/>
 				})}
       		</div>

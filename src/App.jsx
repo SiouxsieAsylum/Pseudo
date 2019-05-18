@@ -29,21 +29,45 @@ import 'codemirror/mode/javascript/javascript.js'
 
 /////////////////// COMPONENT - APP /////////////////////////
 
+
+//should be part of redux store in future
+const COMMENT_FORMATS = {
+	javascript: {
+		start: "//",
+		end: ""
+	}
+};
+
+//candidate for context?
+
+const options = {
+	lineNumbers: true,
+	showCursorWhenSelecting: true
+};
+
 class App extends Component {
 	constructor(){
 		super();
 		this.state = {
 			view: "Title",
-			pseudos: []
+			pseudos: [],
+			fullCode: "",
+			mode: 'javascript',
+			theme: 'midnight'
+
 		}
 		this.addPseudo = this.addPseudo.bind(this);
 		this.removePseudo = this.removePseudo.bind(this);
 		this.switchToPCView = this.switchToPCView.bind(this);
 		this.switchToTextEditorView = this.switchToTextEditorView.bind(this);
+
+		// for the text editor to preserve its value
+		// text-block view an option after codeeditor? Only after save
+		// break on the newlines?
+		this.formatComment = this.formatComment.bind(this);
+		this.constructValueFromProps = this.constructValueFromProps.bind(this);
+		this.updateStateValue = this.updateStateValue.bind(this);
 	};
-
-
-
 
 	////////////////////////////// CRUD ///////////////////////////////////
 
@@ -67,6 +91,32 @@ class App extends Component {
 		})
     }
 
+    ///////////////// CENTRALIZED TEXT EDITOR FUNCTIONS ///////////////////
+
+    formatComment(comment){
+		let startComment = COMMENT_FORMATS[this.state.mode].start;
+		let endComment = COMMENT_FORMATS[this.state.mode].end ? COMMENT_FORMATS[this.state.mode].end : null;
+
+		comment = startComment + " " + comment;
+		if (endComment) comment = comment + " " + endComment;
+
+		return comment;
+	}
+
+    updateStateValue(typedValue){
+		this.setState({
+			fullCode: typedValue
+		})
+	}
+
+	constructValueFromProps(valueArray) {
+		let fullCommentString = '';
+		for (let comment of valueArray){
+			fullCommentString = fullCommentString.concat(this.formatComment(comment)) + '\n';
+		}
+		return fullCommentString;
+	}
+
 	///////////////////////// VIEW FUNCTIONS //////////////////////////////
 
 	switchToPCView(){
@@ -84,8 +134,15 @@ class App extends Component {
     	})
     }
 
-    /////////////////////// CONDITIONAL RENDER ////////////////////////////
+
     render(){
+
+		//////////////// OPTIONS ///////////////////
+
+		options.mode = this.state.mode;
+		options.theme = this.state.theme;
+
+    	/////////// CONDITIONAL RENDER ////////////
 
     	let stateView = this.state.view;
     	let currentView;
@@ -106,13 +163,17 @@ class App extends Component {
 
 				currentView = <TextEditingContainer
 			    	  	    pseudos={this.state.pseudos}
+			    	  	    options={options}
+			    	  	    fullCode={this.state.fullCode}
 			    	  	    switchToPCView={this.switchToPCView}
+			    	  	    formatComment={this.formatComment}
+			    	  	    constructValueFromProps={this.constructValueFromProps}
+			    	  	    updateStateValue={this.updateStateValue}
 			    	  		/>
 		}
 
 
 
-	
 		return (
 			<div className="App">
 				{currentView}

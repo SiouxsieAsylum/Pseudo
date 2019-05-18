@@ -1,32 +1,29 @@
 import React, { Component } from 'react';
 import  CodeMirror from 'react-codemirror';
 
+//should be part of redux store in future
+const COMMENT_FORMATS = {
+	javascript: {
+		start: "//",
+		end: ""
+	}
+};
+
 class CodeEditor extends Component {
 	constructor(props){
-		//ensures props are defined at componentDidMount
 		super(props);
-		//initializes state
-		this.state = {}
-		//bind event handlers to this instance
 	};
 
 	render() {
 
-		let options = {
-			lineNumbers: true,
-			showCursorWhenSelecting: true,
-			//eventually a state
-			mode: 'javascript',
-			//eventually a state
-			theme: 'midnight'
-		};
+		const defaultValue = this.props.fullCode || this.props.constructValueFromProps(this.props.pseudos);
+
 		return (
-			<div>
-      	 	{/* height is 300 default, width is up to container */}
-      		<div className="code-mirror-sizer">
-      			<CodeMirror defaultValue={"//" + this.props.pseudo} options={options}/>
-      		</div>
-      	</div>
+      		<CodeMirror 
+      			defaultValue={defaultValue} 
+      			options={this.props.options}
+      			onChange={this.props.updateStateValue}
+      			/>
 		)
 	}
 }

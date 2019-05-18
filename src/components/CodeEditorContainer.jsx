@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
+import CodeEditor from './CodeEditor';
 
 class CodeEditorContainer extends Component {
 	constructor(props){
-		//ensures props are defined at componentDidMount
 		super(props);
-		//initializes state
 		this.state = {}
-		//bind event handlers to this instance
 	}
 
 	render() {
 		return (
-			<div>
-				<h1>Code Editor Container </h1>
+			<div className="code-mirror editor-size">
+				<CodeEditor 
+					options={this.props.options}
+					pseudos={this.props.pseudos} 
+					fullCode={this.props.fullCode}
+					constructValueFromProps={this.props.constructValueFromProps}
+			    	updateStateValue={this.props.updateStateValue} 
+					formatComment={this.props.formatComment}
+					/>
 			</div>
 		)
 	}
