@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import  CodeMirror from 'react-codemirror';
 
-//should be part of redux store in future
-const COMMENT_FORMATS = {
-	javascript: {
-		start: "//",
-		end: ""
-	}
-};
-
 class CodeEditor extends Component {
 	constructor(props){
 		super(props);
