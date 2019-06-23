@@ -5,7 +5,7 @@ function Title(props){
 		<div className="title centered-container">
 			<h4 className="title-heading">Welcome to Pseudo!</h4>
 			{/*could be succeeded with a what-is page */}
-			<button className="view-switch-button title-button" onClick={props.switchToPCView}>Enter</button>
+			<button className="view-switch-button title-button" onClick={props.switchToSwitchView}>Enter</button>
 		</div>
 		)
 }
