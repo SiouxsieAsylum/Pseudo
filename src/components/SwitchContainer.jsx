@@ -72,17 +72,11 @@ class SwitchContainer extends Component {
 	////////////////////////////// CRUD ///////////////////////////////////
 
 	addPseudo(pseudo){
-			// let pseudo = event.target.value;
-			// let key = event.key;
-			// if (key === 'Enter'){
 				this.setState(state => { 
 					let pseudos = state.pseudos.concat(pseudo) 
 					return { pseudos };
 				});	
-				
-				// event.target.value = '';
-			// }
-		}
+		} 
 		
 		editPseudo(index, text){
 			this.setState(state => {

@@ -23,18 +23,20 @@ class PCInput extends Component {
 	}
 
 	handleSubmission(event){
-		let pseudo = event.target.value;
+		let newPseudo = event.target.value;
 		let key = event.key;
+		let eventType = event.type;
 		let index = this.props.pseudoIndex;
 
-		if (key === 'Enter'){
-			if (this.props.pseudo){
-				this.props.editPseudo(index, pseudo)
-			} else {
-				this.props.addPseudo(pseudo);
-				event.target.value = '';
+		if ((key && key === 'Enter') || (!key && eventType === 'blur' )){
+			if (newPseudo.length){
+				if (this.props.pseudo){
+					this.props.editPseudo(index, newPseudo)
+				} else {
+					this.props.addPseudo(newPseudo);
+					event.target.value = '';
+				}
 			}
-
 		}
 	}
 
@@ -44,7 +46,7 @@ class PCInput extends Component {
 				<FontAwesomeIcon icon={faMinusCircle} onClick={() => this.props.removePseudo(this.props.pseudoIndex)} />
 				<input defaultValue={this.props.pseudo}
 					     onChange={this.handleChange}
-						//  onBlur={() => this.props.addPseudo} 
+						 onBlur={this.handleSubmission} 
 						 onKeyPress={this.handleSubmission} /> 
 			</div>
 		)
