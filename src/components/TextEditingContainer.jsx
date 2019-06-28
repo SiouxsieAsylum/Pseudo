@@ -10,8 +10,6 @@ class TextEditingContainer extends Component {
 		}
 	}
 
-
-
 	render() {
 
 		/////////////// VIEW STATE /////////////////

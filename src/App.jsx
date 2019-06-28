@@ -34,10 +34,11 @@ class App extends Component {
 		super();
 		this.state = {
 			view: "Title",
+			question: ''
 		}
 
 		this.switchToSwitchView = this.switchToSwitchView.bind(this);
-		// this.switchToTextEditorView = this.switchToTextEditorView.bind(this);
+		this.setQuestion = this.setQuestion.bind(this);
 	};
 
 	///////////////////////// VIEW FUNCTIONS //////////////////////////////
@@ -46,16 +47,13 @@ class App extends Component {
     	this.setState({
     		view: 'Switch'
     	})
-    }
-
-    // switchToTextEditorView(){
-    // 	// in future will check if pseudo has been saved before 
-    // 	// will allow you to choose view
-    // 	// for now, takes you to code block
-    // 	this.setState({
-    // 		view: 'TextEditor'
-    // 	})
-    // }
+	}
+	
+	setQuestion(enteredQuestion){
+		this.setState({
+			question: enteredQuestion
+		})
+	}
 
 
     render(){
@@ -63,15 +61,22 @@ class App extends Component {
 
 		switch (this.state.view){
 			case 'Title':
-				currentView = <Title switchToSwitchView={this.switchToSwitchView} />
+				currentView = <Title 
+					switchToSwitchView={this.switchToSwitchView} 
+					setQuestion={this.setQuestion}
+					/>
 				break;
 			case 'Switch':
-				currentView = <SwitchContainer />
+				currentView = <SwitchContainer 
+					/>
 				break;
 		}
 
 		return (
 			<div className="App">
+				<Nav
+					question={this.state.question}
+					/>
 				{currentView}
 			</div>  	
       	);

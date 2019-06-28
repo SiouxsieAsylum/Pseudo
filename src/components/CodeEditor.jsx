@@ -7,12 +7,9 @@ class CodeEditor extends Component {
 	};
 
 	render() {
-
-		const defaultValue = this.props.fullCode || this.props.constructValueFromProps(this.props.pseudos);
-
 		return (
       		<CodeMirror 
-      			defaultValue={defaultValue} 
+      			defaultValue={this.props.fullCode || this.props.constructValueFromProps(this.props.pseudos)} 
       			options={this.props.options}
       			onChange={this.props.updateStateValue}
       			/>
