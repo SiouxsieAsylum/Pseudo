@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import TextEditingContainer from './TextEditingContainer'
-import PCInputContainer from './PCInputContainer'
+import TextEditingContainer from './TextEditingContainer';
+import PCInputContainer from './PCInputContainer';
 
 const EditorContext = React.createContext({
 
@@ -32,8 +32,11 @@ class SwitchContainer extends Component {
 			pseudos: [],
 			fullCode: "",
 			mode: 'javascript',
-			theme: 'midnight'
+			theme: 'midnight',
+			lastPseudo: ''
 		}
+		this.addLastPseudo = this.addLastPseudo.bind(this);
+
 		// SWITCH EVENTS 
 		this.switchToPCView = this.switchToPCView.bind(this);
 		this.switchToTextEditorView = this.switchToTextEditorView.bind(this);
@@ -66,7 +69,8 @@ class SwitchContainer extends Component {
 		// for now, takes you to code block
 		this.setState({
 			switchView: 'TE'
-		})
+		});
+		this.addPseudo(this.state.lastPseudo);
 	}
 
 	////////////////////////////// CRUD ///////////////////////////////////
@@ -75,23 +79,25 @@ class SwitchContainer extends Component {
 			// let pseudo = event.target.value;
 			// let key = event.key;
 			// if (key === 'Enter'){
+				console.log(pseudo);
 				this.setState(state => { 
-					let pseudos = state.pseudos.concat(pseudo) 
+					let pseudos = state.pseudos.concat(pseudo);
 					return { pseudos };
 				});	
 				
 				// event.target.value = '';
 			// }
-		}
-		
-		editPseudo(index, text){
-			this.setState(state => {
-				state.pseudos.splice(index, 1, text);
-				return state.pseudos;
-			})
-		}
+	}
+	
+	editPseudo(index, text){
+		this.setState(state => {
+			state.pseudos.splice(index, 1, text);
+			return state.pseudos;
+		})
+	}
 
     removePseudo(index){
+    		console.log('remove', index);
 			this.setState(state => {
 				let pseudos = state.pseudos.filter((saved, i) => {
 					return i !== index;
@@ -126,6 +132,13 @@ class SwitchContainer extends Component {
 		return fullCommentString;
 	}
 
+	addLastPseudo(p){
+		console.log(p);
+		this.setState({
+			lastPseudo: p
+		})
+	}
+
 	render(){
 
 		//////////////// OPTIONS ///////////////////
@@ -152,6 +165,7 @@ class SwitchContainer extends Component {
 											addPseudo={this.addPseudo}
 											removePseudo={this.removePseudo} 
 											switchToTextEditorView={this.switchToTextEditorView}
+											lastPseudo={this.addLastPseudo}
 			      	  		/>
 		} else if (switchView === 'TE') {
 
