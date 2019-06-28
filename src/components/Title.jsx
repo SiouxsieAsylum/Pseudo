@@ -13,7 +13,7 @@ function Title(props){
 			<div className="single-input-container question-input">
 				<input 
 					className=""
-					onKeyUp={(e) => changeValue(enteredQuestion = e.target.value)}
+					onKeyUp={(e) => changeValue(e.target.value)}
 				/>
 			</div>
 			<button className="view-switch-button title-button" onClick={clickFunction}>Enter</button>
