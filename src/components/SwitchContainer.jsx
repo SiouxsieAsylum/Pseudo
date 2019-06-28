@@ -170,7 +170,6 @@ class SwitchContainer extends Component {
 
 		return (
 			<React.Fragment>
-
 				{currentView}
 			</React.Fragment>
 		)
