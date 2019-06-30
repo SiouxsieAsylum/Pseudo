@@ -33,6 +33,7 @@ class PCInputContainer extends Component {
 		return (
 			<div className="pc-input-container centered-container content-container" id="pc-inputs">
 				{this.props.pseudos.map((comment, i) => {
+					console.log(comment);
 					let regex = /\s/gi;
 					let uniqueName = comment.title.replace(regex, '-');
 					return <PCInput 
@@ -43,7 +44,6 @@ class PCInputContainer extends Component {
 						addPseudo={this.props.addPseudo}
 						removePseudo={this.props.removePseudo}
 					/>
-					console.log(comment.title)
 				})}
 
 				<PCInput 

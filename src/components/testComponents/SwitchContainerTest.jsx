@@ -90,7 +90,7 @@ class SwitchContainer extends Component {
 		// let pseudo = event.target.value;
 		// let key = event.key;
 		// if (key === 'Enter'){
-			console.log(pseudo);
+			// console.log(pseudo);
 			this.setState(state => { 
 				let pseudos = state.pseudos.concat(pseudo);
 				return { pseudos };
@@ -144,7 +144,7 @@ class SwitchContainer extends Component {
 	}
 
 	addLastPseudo(p){
-		console.log(p);
+		// console.log(p);
 		this.setState({
 			lastPseudo: p
 		})

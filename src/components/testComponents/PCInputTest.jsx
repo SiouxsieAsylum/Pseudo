@@ -4,6 +4,7 @@ import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 import { thisExpression } from '@babel/types';
 
 import hotkeys from 'hotkeys-js';
+import axios from 'axios';
 
 class PCInput extends Component {
 
@@ -48,7 +49,14 @@ class PCInput extends Component {
 				this.props.addPseudo(pseudo);
 				event.target.value = '';
 			}
-
+			event.preventDefault();
+		    axios.post('/data', {
+		        title: this.state.inputVal
+		    })
+		    .then(res => {
+		      console.log(res);
+		    })
+		    .catch(err => console.log(err));
 		}
 		if (key === 'Tab'){
 			// CREATE CHILD FIELD
@@ -58,14 +66,15 @@ class PCInput extends Component {
 	render() {
 		return (
 			<div className="single-input-container">
-
-				<FontAwesomeIcon icon={faMinusCircle} onClick={() => this.props.removePseudo(this.props.pseudoIndex)} />
-
-				<input defaultValue={this.props.pseudo}
-					onChange={this.handleChange}
-					//  onBlur={() => this.props.addPseudo} 
-					onKeyPress={this.handleSubmission} 
-				/>
+				<form className="submitThis" method="POST">
+					<FontAwesomeIcon icon={faMinusCircle} onClick={() => this.props.removePseudo(this.props.pseudoIndex)} />
+					
+					<input name="comment" defaultValue={this.props.pseudo}
+						onChange={this.handleChange}
+						//  onBlur={() => this.props.addPseudo} 
+						onKeyPress={this.handleSubmission} 
+					/>
+				</form>
 
 			</div>
 		)

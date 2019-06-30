@@ -25,6 +25,24 @@ app.get('/data', (req,res) => {
 	})
 });
 
+// POST ONE
+app.post('/data', (req,res) => {
+	let sql = `
+		INSERT INTO projects (
+			title 
+		)
+		VALUES ($1)
+		RETURNING *
+	`;
+	db.one(sql, [req.body.title], (err,result) => {
+		if(err){
+			throw err;
+		}
+		console.log(result);
+		res.json(result)
+	})
+});
+
 // CATCH
 app.get('*', (req, res) => {
 	res.status(404).json({
