@@ -10,7 +10,8 @@ import  CodeMirror from 'react-codemirror';
 
 import Nav from './components/Nav';
 import Title from './components/Title';
-import SwitchContainer from './components/SwitchContainer';
+// import SwitchContainer from './components/SwitchContainer';
+import SwitchContainer from './components/testComponents/SwitchContainerTest';
 
 
 /////////////////// IMPORTS - CSS //////////////////////////////

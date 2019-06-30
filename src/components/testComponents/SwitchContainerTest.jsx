@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TextEditingContainer from './TextEditingContainer';
+import TextEditingContainer from '../TextEditingContainer';
 // import PCInputContainer from './PCInputContainer';
 import PCInputContainer from './PCInputContainerTest';
 import axios from 'axios';
@@ -57,16 +57,14 @@ class SwitchContainer extends Component {
 		this.updateStateValue = this.updateStateValue.bind(this);
 	}
 
-	// componentDidMount(){
-	// 	axios.get('/data')
-	// 	.then((response) => {
-	// 		this.setState({
-	// 			pseudos: response
-	// 		});
-	// 	}, () => {
-	// 		console.log(this.state.pseudos)
-	// 	});
-	// }
+	componentDidMount(){
+		axios.get('/data')
+		.then((response) => {
+			this.setState({
+				pseudos: response.data
+			});
+		});
+	}
 
 	/////////////////////////// NAVIGATION ////////////////////////////////
 

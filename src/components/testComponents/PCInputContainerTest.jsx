@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Scroll from 'react-scroll';
-import PCInput from './PCInput';
+import PCInput from './PCInputTest';
 
 
 const Link = Scroll.Link;
@@ -34,15 +34,16 @@ class PCInputContainer extends Component {
 			<div className="pc-input-container centered-container content-container" id="pc-inputs">
 				{this.props.pseudos.map((comment, i) => {
 					let regex = /\s/gi;
-					let uniqueName = comment.replace(regex, '-');
+					let uniqueName = comment.title.replace(regex, '-');
 					return <PCInput 
 						key={'PC-Input-' + uniqueName}
-						pseudo={comment}
+						pseudo={comment.title}
 						pseudoIndex={i}
 						editPseudo={this.props.editPseudo}
 						addPseudo={this.props.addPseudo}
 						removePseudo={this.props.removePseudo}
 					/>
+					console.log(comment.title)
 				})}
 
 				<PCInput 
