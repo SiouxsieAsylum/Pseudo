@@ -1,5 +1,6 @@
 const express = require('express'),
 	app = express(),
+	keys = require('./config/creds'),
 	mysql = require('mysql');
 
 // MYSQL CONFIG
@@ -30,6 +31,7 @@ app.get('*', (req, res) => {
 		message: 'Invalid route!',
 	});
 });
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
