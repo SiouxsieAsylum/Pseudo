@@ -57,7 +57,7 @@ class SwitchContainer extends Component {
 		this.updateStateValue = this.updateStateValue.bind(this);
 	}
 
-	componentDidMount(){
+	componentWillMount(){
 		axios.get('/data')
 		.then((response) => {
 			this.setState({
@@ -90,12 +90,21 @@ class SwitchContainer extends Component {
 		// let pseudo = event.target.value;
 		// let key = event.key;
 		// if (key === 'Enter'){
-			// console.log(pseudo);
+			console.log(pseudo);
 			this.setState(state => { 
-				let pseudos = state.pseudos.concat(pseudo);
-				return { pseudos };
+				state.pseudos.push({
+					title: pseudo
+				});
+			}, () => {
+				console.log('Switch',this.state.pseudos);
+				// return this.state.pseudos;
+				this.setState({
+					title: this.state.title
+				})			
 			});	
 			
+			// this.state.pseudos.push(pseudo)
+
 			// event.target.value = '';
 		// }
 	}
@@ -171,13 +180,13 @@ class SwitchContainer extends Component {
 				// 			  </PseudoContext.Provider>
 			//PCInputContext
 			currentView = <PCInputContainer
-											pseudos={this.state.pseudos}
-											editPseudo={this.editPseudo}
-											addPseudo={this.addPseudo}
-											removePseudo={this.removePseudo} 
-											switchToTextEditorView={this.switchToTextEditorView}
-											lastPseudo={this.addLastPseudo}
-			      	  		/>
+							pseudos={this.state.pseudos}
+							editPseudo={this.editPseudo}
+							addPseudo={this.addPseudo}
+							removePseudo={this.removePseudo} 
+							switchToTextEditorView={this.switchToTextEditorView}
+							lastPseudo={this.addLastPseudo}
+			      	  	/>
 		} else if (switchView === 'TE') {
 
 				// currentView = <EditorContext.Provider

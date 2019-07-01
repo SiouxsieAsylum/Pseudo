@@ -49,14 +49,14 @@ class PCInput extends Component {
 				this.props.addPseudo(pseudo);
 				event.target.value = '';
 			}
-			event.preventDefault();
-		    axios.post('/data', {
-		        title: this.state.inputVal
-		    })
-		    .then(res => {
-		      console.log(res);
-		    })
-		    .catch(err => console.log(err));
+			// event.preventDefault();
+			// document.querySelector('.submitThis').submit();
+
+		 //    axios.post('/data', {
+		 //        title: this.state.inputVal
+		 //    }).then(res => {
+		 //      console.log(res);
+		 //    }).catch(err => console.log(err));
 		}
 		if (key === 'Tab'){
 			// CREATE CHILD FIELD
@@ -66,7 +66,6 @@ class PCInput extends Component {
 	render() {
 		return (
 			<div className="single-input-container">
-				<form className="submitThis" method="POST">
 					<FontAwesomeIcon icon={faMinusCircle} onClick={() => this.props.removePseudo(this.props.pseudoIndex)} />
 					
 					<input name="comment" defaultValue={this.props.pseudo}
@@ -74,7 +73,6 @@ class PCInput extends Component {
 						//  onBlur={() => this.props.addPseudo} 
 						onKeyPress={this.handleSubmission} 
 					/>
-				</form>
 
 			</div>
 		)
