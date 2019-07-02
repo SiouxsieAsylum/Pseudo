@@ -1,7 +1,14 @@
 const express = require('express'),
 	app = express(),
 	keys = require('./config/creds'),
-	mysql = require('mysql');
+	mysql = require('mysql'),
+	cors = require('cors'),
+	bodyParser = require('body-parser');
+
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 // MYSQL CONFIG
 const db = mysql.createConnection(keys.mysql);
@@ -27,17 +34,17 @@ app.get('/data', (req,res) => {
 
 // POST ONE
 app.post('/data', (req,res) => {
+	console.log(req.body);
 	let sql = `
-		INSERT INTO projects (
+		INSERT INTO pseudos (
 			title 
 		)
-		VALUES ($1)
-		RETURNING *
+		VALUES (?)
 	`;
-	db.one(sql, [req.body.title], (err,result) => {
+	db.query(sql, [req.body.title], (err,result) => {
 		if(err){
 			throw err;
-		}
+		} 
 		console.log(result);
 		res.json(result)
 	})
