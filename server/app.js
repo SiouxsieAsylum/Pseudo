@@ -50,6 +50,18 @@ app.post('/data', (req,res) => {
 	})
 });
 
+app.delete('/data/:id', (req,res) => {
+	console.log(req.params)
+	let sql = `DELETE FROM pseudos WHERE id = ?`;
+	db.query(sql, [req.params.id], (err,result) => {
+		if(err){
+			throw err;
+		} 
+		console.log(result);
+		res.json(result)
+	})
+});
+
 // CATCH
 app.get('*', (req, res) => {
 	res.status(404).json({

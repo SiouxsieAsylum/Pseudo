@@ -37,6 +37,7 @@ class PCInputContainer extends Component {
 					let regex = /\s/gi;
 					let uniqueName = comment.title.replace(regex, '-');
 					return <PCInput 
+						axID={comment.id}
 						key={'PC-Input-' + uniqueName}
 						pseudo={comment.title}
 						pseudoIndex={i}

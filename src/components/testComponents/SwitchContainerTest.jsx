@@ -100,7 +100,7 @@ class SwitchContainer extends Component {
 				// return this.state.pseudos;
 				this.setState({
 					title: this.state.title
-				})			
+				});
 			});	
 			
 			// this.state.pseudos.push(pseudo)
@@ -116,13 +116,18 @@ class SwitchContainer extends Component {
 		})
 	}
 
-    removePseudo(index){
+    removePseudo(index, id){
     		console.log('remove', index);
 			this.setState(state => {
 				let pseudos = state.pseudos.filter((saved, i) => {
 					return i !== index;
 				})
 				return { pseudos }
+			}, () => {
+				axios.delete(`/data/${id}`)
+				.then((response) => {
+					console.log(response);
+				});
 			})
     }
 

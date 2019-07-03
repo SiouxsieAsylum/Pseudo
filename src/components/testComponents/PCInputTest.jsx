@@ -16,6 +16,7 @@ class PCInput extends Component {
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmission = this.handleSubmission.bind(this);
+	    this.handleFormSubmit = this.handleFormSubmit.bind(this);
 	}
 
 	handleChange = (event) => {
@@ -49,31 +50,33 @@ class PCInput extends Component {
 				this.props.addPseudo(pseudo);
 				event.target.value = '';
 			}
-			// event.preventDefault();
-			// document.querySelector('.submitThis').submit();
-
-		 //    axios.post('/data', {
-		 //        title: this.state.inputVal
-		 //    }).then(res => {
-		 //      console.log(res);
-		 //    }).catch(err => console.log(err));
 		}
 		if (key === 'Tab'){
 			// CREATE CHILD FIELD
 		}
 	}
+	handleFormSubmit(event){
+		console.log(event)
+		event.preventDefault();
+	    axios.post('/data', {
+	        title: this.state.inputVal
+	    }).then(res => {
+	      console.log(res);
+	    }).catch(err => console.log(err));
+	}
 
 	render() {
 		return (
 			<div className="single-input-container">
-					<FontAwesomeIcon icon={faMinusCircle} onClick={() => this.props.removePseudo(this.props.pseudoIndex)} />
+				<form method="POST" onSubmit={this.handleFormSubmit}>	
+					<FontAwesomeIcon icon={faMinusCircle} onClick={() => this.props.removePseudo(this.props.pseudoIndex, this.props.axID)} />
 					
 					<input name="comment" defaultValue={this.props.pseudo}
 						onChange={this.handleChange}
 						//  onBlur={() => this.props.addPseudo} 
 						onKeyPress={this.handleSubmission} 
 					/>
-
+				</form>
 			</div>
 		)
 	}
