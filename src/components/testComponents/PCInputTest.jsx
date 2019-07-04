@@ -21,11 +21,14 @@ class PCInput extends Component {
 
 	handleChange = (event) => {
 		let value = event.target.value
-		this.setState({
-			inputVal: value
-		}, () => {
-			this.props.lastPseudo(this.state.inputVal)
-		});
+		if(!this.props.pseudoIndex){
+			this.setState({
+				inputVal: value
+			}, () => {
+				console.log(this.state.inputVal);
+				this.props.lastPseudo(this.state.inputVal)
+			});
+		}
 	}
 
 	handleSubmission(event){
@@ -39,13 +42,13 @@ class PCInput extends Component {
 
 		// let pseudo = event.target.value;
 		let pseudo = this.state.inputVal;
-		let interPseudo = this.props.pseudo;
+		let interPseudo = event.target.value;
 		let key = event.key;
 		let index = this.props.pseudoIndex;
 
 		if (key === 'Enter'){
 			if (interPseudo){
-				this.props.editPseudo(index, interPseudo)
+				this.props.editPseudo(index, interPseudo, this.props.axID)
 			} else {
 				this.props.addPseudo(pseudo);
 				event.target.value = '';
