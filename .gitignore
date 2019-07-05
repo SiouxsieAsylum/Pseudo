@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 
+# server creds
+/server/node_modules
+/server/config/creds.js
+
 # testing
 /coverage
 

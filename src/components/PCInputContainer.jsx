@@ -32,24 +32,28 @@ class PCInputContainer extends Component {
 	render() {
 		return (
 			<div className="pc-input-container centered-container content-container" id="pc-inputs">
-					{this.props.pseudos.map((comment, i) => {
-						let regex = /\s/gi;
-						let uniqueName = comment.replace(regex, '-');
-						return <PCInput 
-							key={'PC-Input-' + uniqueName}
-							pseudo={comment}
-							pseudoIndex={i}
-							editPseudo={this.props.editPseudo}
-							addPseudo={this.props.addPseudo}
-							removePseudo={this.props.removePseudo}
-							/>
-					})}
+				{this.props.pseudos.map((comment, i) => {
+					console.log('comment',comment, this.props.pseudos.length);
+					let regex = /\s/gi;
+					let uniqueName = comment.title.replace(regex, '-');
+					return <PCInput 
+						axID={comment.id}
+						key={'PC-Input-' + uniqueName}
+						pseudo={comment.title}
+						pseudoIndex={i}
+						editPseudo={this.props.editPseudo}
+						addPseudo={this.props.addPseudo}
+						removePseudo={this.props.removePseudo}
+					/>
+				})}
 
 				<PCInput 
 					id="newInput"
 					addPseudo={this.props.addPseudo}
 					removePseudo={this.props.removePseudo}
-					/>
+					lastPseudo={this.props.lastPseudo}
+				/>
+
 				<button className="view-switch-button" onClick={this.props.switchToTextEditorView}>To TE View</button>
 			</div>
 		)

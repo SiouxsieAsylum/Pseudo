@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import TextEditingContainer from './TextEditingContainer'
-import PCInputContainer from './PCInputContainer'
+import TextEditingContainer from './TextEditingContainer';
+import PCInputContainer from './PCInputContainer';
+import axios from 'axios';
 
 const EditorContext = React.createContext({
 
@@ -32,8 +33,12 @@ class SwitchContainer extends Component {
 			pseudos: [],
 			fullCode: "",
 			mode: 'javascript',
-			theme: 'midnight'
+			theme: 'midnight',
+			lastPseudo: '',
+			force: true
 		}
+		this.addLastPseudo = this.addLastPseudo.bind(this);
+
 		// SWITCH EVENTS 
 		this.switchToPCView = this.switchToPCView.bind(this);
 		this.switchToTextEditorView = this.switchToTextEditorView.bind(this);
@@ -52,6 +57,15 @@ class SwitchContainer extends Component {
 		this.updateStateValue = this.updateStateValue.bind(this);
 	}
 
+	componentWillMount(){
+		axios.get('/data')
+		.then((response) => {
+			this.setState({
+				pseudos: response.data
+			});
+		});
+	}
+
 	/////////////////////////// NAVIGATION ////////////////////////////////
 
 	switchToPCView(){
@@ -66,38 +80,73 @@ class SwitchContainer extends Component {
 		// for now, takes you to code block
 		this.setState({
 			switchView: 'TE'
-		})
+		});
+		this.addPseudo(this.state.lastPseudo);
 	}
 
 	////////////////////////////// CRUD ///////////////////////////////////
 
 	addPseudo(pseudo){
-			// let pseudo = event.target.value;
-			// let key = event.key;
-			// if (key === 'Enter'){
-				this.setState(state => { 
-					let pseudos = state.pseudos.concat(pseudo) 
-					return { pseudos };
-				});	
-				
-				// event.target.value = '';
-			// }
-		}
-		
-		editPseudo(index, text){
-			this.setState(state => {
-				state.pseudos.splice(index, 1, text);
-				return state.pseudos;
-			})
-		}
+		// let pseudo = event.target.value;
+		// let key = event.key;
+		// if (key === 'Enter'){
+			console.log(pseudo);
+			this.setState(state => { 
+				state.pseudos.push({
+					title: pseudo
+				});
+			}, () => {
+				console.log('Switch',this.state.pseudos);
+				// return this.state.pseudos;
+				this.setState({
+					force: !this.state.force
+				});
+			});	
+			
+			// this.state.pseudos.push(pseudo)
 
-    removePseudo(index){
-			this.setState(state => {
-				let pseudos = state.pseudos.filter((saved, i) => {
-					return i !== index;
-				})
-				return { pseudos }
+			// event.target.value = '';
+		// }
+	}
+	
+	editPseudo(index, newComment, id){
+		console.log(index, newComment, id);
+		// this.setState(state => {
+		// 	state.pseudos.splice(index, 1, newComment);
+		// 	return state.pseudos;
+		// },
+		this.setState(state => {
+			state.pseudos[index].title = newComment;
+		}, () => {
+			this.setState({
+				force: !this.state.force
+			});
+
+			axios.put(`/data/${id}`, { 
+				title: newComment
 			})
+			.then(response => {
+				console.log(response);
+			})
+			.catch(err => {
+				console.log(err);
+			})
+		})
+	}
+
+    removePseudo(index, id){
+		console.log('remove', index);
+		this.setState(state => {
+			let pseudos = state.pseudos.filter((saved, i) => {
+				return i !== index;
+			})
+			return { pseudos }
+		}, () => {
+			axios.delete(`/data/${id}`)
+			.then((response) => {
+				console.log(response);
+			});
+		})
     }
 
     ///////////////// CENTRALIZED TEXT EDITOR FUNCTIONS ///////////////////
@@ -126,6 +175,13 @@ class SwitchContainer extends Component {
 		return fullCommentString;
 	}
 
+	addLastPseudo(p){
+		// console.log(p);
+		this.setState({
+			lastPseudo: p
+		})
+	}
+
 	render(){
 
 		//////////////// OPTIONS ///////////////////
@@ -133,10 +189,8 @@ class SwitchContainer extends Component {
 		options.mode = this.state.mode;
 		options.theme = this.state.theme;
 
-
 		let switchView = this.state.switchView;
 		let currentView;
-
 
 		if (switchView === 'PC') {
 
@@ -147,12 +201,13 @@ class SwitchContainer extends Component {
 				// 			  </PseudoContext.Provider>
 			//PCInputContext
 			currentView = <PCInputContainer
-											pseudos={this.state.pseudos}
-											editPseudo={this.editPseudo}
-											addPseudo={this.addPseudo}
-											removePseudo={this.removePseudo} 
-											switchToTextEditorView={this.switchToTextEditorView}
-			      	  		/>
+							pseudos={this.state.pseudos}
+							editPseudo={this.editPseudo}
+							addPseudo={this.addPseudo}
+							removePseudo={this.removePseudo} 
+							switchToTextEditorView={this.switchToTextEditorView}
+							lastPseudo={this.addLastPseudo}
+			      	  	/>
 		} else if (switchView === 'TE') {
 
 				// currentView = <EditorContext.Provider
@@ -163,20 +218,19 @@ class SwitchContainer extends Component {
 
 			//CodeEditingContext
 				currentView = <TextEditingContainer
-			    	  	    pseudos={this.state.pseudos}
-			    	  	    options={options} 
-			    	  	    fullCode={this.state.fullCode}
-			    	  	    switchToPCView={this.switchToPCView}
-			    	  	    formatComment={this.formatComment}
-			    	  	    constructValueFromProps={this.constructValueFromProps}
-			    	  	    updateStateValue={this.updateStateValue}
+				    	  	    pseudos={this.state.pseudos}
+				    	  	    options={options} 
+				    	  	    fullCode={this.state.fullCode}
+				    	  	    switchToPCView={this.switchToPCView}
+				    	  	    formatComment={this.formatComment}
+				    	  	    constructValueFromProps={this.constructValueFromProps}
+				    	  	    updateStateValue={this.updateStateValue}
 			    	  		/>
 		}
 
 
 		return (
 			<React.Fragment>
-
 				{currentView}
 			</React.Fragment>
 		)

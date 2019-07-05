@@ -2,15 +2,16 @@
 /////////////////// IMPORTS - NPM ///////////////////////////////
 
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route} from 'react-router-dom'
-import { HashLink as Link } from 'react-router-hash-link'
+import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 import  CodeMirror from 'react-codemirror';
 
 /////////////// IMPORTS - COMPONENTS ////////////////////////////
 
-import Nav from './components/Nav'
-import Title from './components/Title'
-import SwitchContainer from './components/SwitchContainer'
+import Nav from './components/Nav';
+import Title from './components/Title';
+// import SwitchContainer from './components/SwitchContainer';
+import SwitchContainer from './components/SwitchContainer';
 
 
 /////////////////// IMPORTS - CSS //////////////////////////////
@@ -23,7 +24,7 @@ import 'codemirror/theme/midnight.css';
 
 //////////////////// IMPORTS - JS //////////////////////////////
 
-import 'codemirror/mode/javascript/javascript.js'
+import 'codemirror/mode/javascript/javascript.js';
 
 
 /////////////////// COMPONENT - APP /////////////////////////
